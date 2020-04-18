@@ -1,0 +1,26 @@
+type,rarity,mobility,resilience,recovery,discipline,intellect,strength,name
+helmet,legendary,8,8,14,11,17,2,Iron Remembrance Helm
+helmet,legendary,10,16,6,18,2,12,Righteous Helm
+helmet,legendary,12,12,6,16,2,6,The Shelter In Place
+helmet,legendary,2,15,14,14,9,8,Helm Of Righteousness
+helmet,legendary,9,16,8,9,16,6,Helm Of Righteousness
+helmet,legendary,9,14,6,10,10,12,Iron Will Helm
+helmet,legendary,2,8,19,12,12,6,Prodigal Helm
+gauntlets,legendary,2,22,10,9,12,12,Seventh Seraph Gauntlets
+gauntlets,legendary,6,18,9,14,6,11,Righteous Gauntlets
+gauntlets,legendary,12,12,10,9,7,13,Gauntlets Of Exaltation
+gauntlets,legendary,7,2,19,13,12,2,Dreambane Gauntlets
+gauntlets,legendary,12,10,10,13,2,15,Iron Rememberance Gauntlets
+gauntlets,legendary,6,18,9,13,14,2,Iron Rememberance Gauntlets
+gauntlets,legendary,14,8,8,2,19,12,Iron Rememberance Gauntlets
+gauntlets,legendary,9,16,7,12,15,2,Iron Rememberance Gauntlets
+gauntlets,legendary,2,14,12,12,13,2,Substitutional Alloy Gauntlets
+chest,legendary,6,10,17,16,2,11,Iron Rememberance Plate
+chest,legendary,11,2,14,2,13,12,The Shelter In Place
+chest,legendary,8,6,16,16,6,6,Plate Of Transcendence
+chest,legendary,2,15,13,7,14,9,Iron Rememberance Plate
+chest,legendary,2,21,6,12,17,2,Plate Of Transcendence
+chest,legendary,6,22,6,16,9,7,Righteous Plate
+chest,legendary,22,10,2,9,14,6,Bulletsmith's Ire Plate
+chest,legendary,11,7,10,12,6,14,Iron Will Plate
+leg,exotic,10,10,10,19,9,2,Dunemarchers
