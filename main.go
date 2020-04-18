@@ -132,7 +132,7 @@ func printStats(remainders armorRemainders, totals *armor) {
 }
 
 func printStatsFull(bundle stats) {
-	fmt.Println("*** \nTotals -- ")
+	fmt.Printf("*** \nTotals -- ")
 	printStats(bundle.remainders, bundle.totals)
 	fmt.Printf("Tier: T(%d)\n", bundle.tier)
 	fmt.Printf("Overflow: %d\n", bundle.over)
