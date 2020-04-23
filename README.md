@@ -3,10 +3,11 @@ Destiny 2 | Armor 2.0  - armor sets stats optimization
 
 
 ### Usage:
-1. Ensure your .csv file headers are correct (see example-armors.csv). Please
-note: enter armor pieces with *_base_* armor stats, *_do not_* include masterwork bonus, or armor mods.
+1. Download your armor .csv file from DIM (example: destinyArmor.csv).
+1. Make sure your armor .csv file is in the same current working directory as repo.
 1. Build the binary: `go build`
-1. Run the program: `./d2blacksmith example-armors.csv`
+1. Run the program: `./d2blacksmith -file=destinyArmor.csv -guardian=Titan`
+
 #
 
 ### Example Output:
@@ -67,3 +68,6 @@ Legs:
 
 ...
 ```
+
+#
+###### Run the following for more information on CLI options: `./d2blacksmith -help`
