@@ -16,3 +16,5 @@ d2blacksmith
 # vendor/
 
 *.vscode*
+*.csv
+!example-armors.csv
