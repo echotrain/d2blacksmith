@@ -15,23 +15,31 @@ var (
 	guardianFlag   string
 	masterworkFlag bool
 	powerfulFlag   int
+	overflowFlag   int
+	tierFlag       int
 	modsFlag       int
 )
 
 func init() {
-	fileHelp := "file name of .csv file to process? example: -file:example-armors.csv"
+	fileHelp := "file name of .csv file to process. example: -file:example-armors.csv"
 	flag.StringVar(&fileFlag, "file", "", fileHelp)
 
-	guardianHelp := "which class do you want to process? example: -guardian=titan"
+	guardianHelp := "class type you want to process. example: -guardian=titan"
 	flag.StringVar(&guardianFlag, "guardian", "", guardianHelp)
 
-	masterworkHelp := "assume all pieces of armors sets are masterworked? example: -masterwork=true"
+	masterworkHelp := "assume all pieces of armor sets are masterworked. example: -masterwork=true"
 	flag.BoolVar(&masterworkFlag, "masterwork", false, masterworkHelp)
 
-	powerfulHelp := "how many powerful friends mods (no more than 2) to be applied? example: -powerful=1"
+	powerfulHelp := "number of powerful friends mods to apply (no more than 2). example: -powerful=1"
 	flag.IntVar(&powerfulFlag, "powerful", 0, powerfulHelp)
 
-	modsHelp := "how many stat based mods (no more than 5) to be applied? example: -mods=5"
+	overflowHelp := "(<) maximum of wasted stats to allow (default 10). example: -overflow=10"
+	flag.IntVar(&overflowFlag, "overflow", 10, overflowHelp)
+
+	tierHelp := "(>=) minimum of total stat tiers to find (default 38). example: -tier=38"
+	flag.IntVar(&tierFlag, "tier", 38, tierHelp)
+
+	modsHelp := "number of stat based mods to apply (no more than 5). example: -mods=5"
 	flag.IntVar(&modsFlag, "mods", 0, modsHelp)
 }
 
@@ -167,7 +175,14 @@ func printStats(remainders armorRemainders, totals *armor) {
 func printStatsFull(bundle stats) {
 	fmt.Printf("*** \nTotals -- ")
 	printStats(bundle.remainders, bundle.totals)
-	fmt.Printf("Tier: T(%d)\n", bundle.tier)
+	fmt.Printf(
+		"Tier: T(%d) == [(Base: %d) + (Mods: %d) + (Powerful Friends*%d: %d)]\n",
+		bundle.tier,
+		bundle.tier-modsFlag-(powerfulFlag*2),
+		modsFlag,
+		powerfulFlag,
+		powerfulFlag*2,
+	)
 	fmt.Printf("Overflow: %d\n", bundle.over)
 	helmJSON, _ := json.MarshalIndent(bundle.helm, "", "\t")
 	fmt.Printf("Helm:\n%s\n", string(helmJSON))
@@ -207,13 +222,13 @@ func analyze(bundle stats) {
 		Intellect:  modulus(bundle.totals.Intellect),
 		Strength:   modulus(bundle.totals.Strength),
 	}
-	bundle.tier = sum(bundle.totals) + modsFlag + powerfulFlag
+	bundle.tier = sum(bundle.totals) + modsFlag + (powerfulFlag * 2)
 	if masterworkFlag {
 		bundle.tier += 6
 	}
 	bundle.over = overflow(bundle.remainders)
 
-	if bundle.over < 10 && bundle.tier >= 38 {
+	if bundle.over < overflowFlag && bundle.tier >= tierFlag {
 		printStatsFull(bundle)
 	}
 }
