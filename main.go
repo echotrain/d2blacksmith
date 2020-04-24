@@ -186,6 +186,18 @@ func traction(bundle *stats) {
 	bundle.totals.Mobility += 5
 }
 
+func exotic(set []string) int {
+	count := 0
+
+	for _, item := range set {
+		if item == "Exotic" {
+			count++
+		}
+	}
+
+	return count
+}
+
 func analyze(bundle stats) {
 	bundle.remainders = armorRemainders{
 		Mobility:   modulus(bundle.totals.Mobility),
@@ -196,16 +208,13 @@ func analyze(bundle stats) {
 		Strength:   modulus(bundle.totals.Strength),
 	}
 	bundle.tier = sum(bundle.totals) + modsFlag + powerfulFlag
+	if masterworkFlag {
+		bundle.tier += 6
+	}
 	bundle.over = overflow(bundle.remainders)
 
-	if bundle.over <= 9 && bundle.tier >= 38 {
+	if bundle.over < 10 && bundle.tier >= 38 {
 		printStatsFull(bundle)
-	} else if bundle.tier >= 40 {
-		printStatsFull(bundle)
-	} else if !bundle.remainders.Mobility.low {
-		// TODO: traction func not working correctly
-		// traction(&bundle)
-		// analyze(bundle)
 	}
 }
 
@@ -219,6 +228,10 @@ func process(gear organized) {
 		for _, g := range gauntlets {
 			for _, c := range chests {
 				for _, l := range legs {
+					if exotic([]string{h.Rarity, g.Rarity, c.Rarity, l.Rarity}) > 1 {
+						continue
+					}
+
 					bundle := stats{
 						totals: &armor{
 							Mobility:   h.Mobility + g.Mobility + c.Mobility + l.Mobility,
