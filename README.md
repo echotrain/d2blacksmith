@@ -9,7 +9,12 @@ Destiny 2 | Armor 2.0  - armor sets stats optimization
 
 #
 
-### Example Output:
+## Example:
+
+##### _Command_: `./d2blacksmith -file=destinyArmor.csv -guardian=Warlock -mods=5 -powerful=2 -masterwork=true -overflow=10 -tier=40`
+
+##### _Output_:
+
 ```
 ***
 Totals -- Mob: 20 (0,low) | Res: 30 (0,low) | Rec: 80 (0,low) | Dis: 65 (5,high) | Int: 30 (0,low) | Str: 33 (3,low)
