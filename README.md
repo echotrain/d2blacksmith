@@ -11,7 +11,10 @@ Destiny 2 | Armor 2.0  - armor sets stats optimization
 
 ## Example:
 
-##### _Command_: `./d2blacksmith -file=destinyArmor.csv -guardian=Warlock -mods=5 -powerful=2 -masterwork=true -overflow=10 -tier=40`
+##### _Command_:
+```
+./d2blacksmith -file=destinyArmor.csv -guardian=Warlock -mods=5 -powerful=2 -masterwork=true -overflow=10 -tier=40
+```
 
 ##### _Output_:
 
